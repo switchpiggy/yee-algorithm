@@ -10,7 +10,6 @@ from yee3d.GridVisualizer import GridVisualizer
 from PIL import Image
 
 # Create your views here.
-@csrf_exempt
 def index(request: HttpRequest):
     if request.method == "GET":
         return HttpResponse("Hi")
