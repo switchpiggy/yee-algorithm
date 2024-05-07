@@ -38,3 +38,4 @@ traitlets==5.7.1
 uuid==1.30
 wcwidth==0.2.5
 wheel==0.41.2
+gunicorn==22.0.0
