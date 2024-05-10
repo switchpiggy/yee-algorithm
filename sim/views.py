@@ -5,11 +5,14 @@ from yee3d.Grid import Grid
 from yee3d.BoundaryCond import FirstOrderABC
 from django.views.decorators.csrf import csrf_exempt
 import json
+import io
+import base64
 
 from yee3d.GridVisualizer import GridVisualizer
 from PIL import Image
 
 # Create your views here.
+@csrf_exempt
 def index(request: HttpRequest):
     if request.method == "GET":
         return HttpResponse("Hi")
@@ -29,10 +32,11 @@ def index(request: HttpRequest):
         # print(path)
 
         try:
-            with open(path, "rb") as f:
-                r = f.read()
+            with open(path, 'rb') as f:
+                gif_file = f.read()
+                detect_base64 = 'data:image/gif;base64,{}'.format(base64.b64encode(gif_file).decode())
                 V.cleanup()
-                return HttpResponse(r, content_type="image/gif")
+                return HttpResponse(detect_base64)
         except IOError:
             return HttpResponseServerError("An error occurred generating the simulation gif.")
 

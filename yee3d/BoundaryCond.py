@@ -71,7 +71,7 @@ class FirstOrderABC(BoundaryCond):
             for y in range(self.grid.dims[1]):
                 if x < self.grid.dims[0] - 1:
                     #update Ey
-                    self.grid.Ex[x][y][0] = self.ExY0[x][y] + self.coef * (self.grid.Ex[x][y][1] - self.grid.Ex[x][y][0])
+                    self.grid.Ex[x][y][0] = self.ExZ0[x][y] + self.coef * (self.grid.Ex[x][y][1] - self.grid.Ex[x][y][0])
                     self.ExZ0[x][y] = self.grid.Ex[x][y][0]
                     self.grid.Ex[x][y][self.grid.dims[2] - 1] = self.ExZP[x][y] + self.coef * (self.grid.Ex[x][y][self.grid.dims[2] - 2] - self.grid.Ex[x][y][self.grid.dims[2] - 1])
                     self.ExZP[y][z] = self.grid.Ex[x][y][self.grid.dims[2] - 1]
