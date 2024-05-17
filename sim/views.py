@@ -17,14 +17,12 @@ def index(request: HttpRequest):
     if request.method == "GET":
         return HttpResponse("Hi")
     if request.method == "POST":
-        body = json.loads(request.body)
-        config = body.get('gridConfig', None)
+        config = json.loads(request.body)
         if config == None:
             return HttpResponseBadRequest("Config not found.")
         
-        # print(config)
-        
-        G = Grid(int(config['sx']), int(config['sy']), int(config['sz']), int(config['maxTime']))
+        print(config)
+        G = Grid(int(config['X']), int(config['Y']), int(config['Z']), int(config['maxTime']))
         abc = FirstOrderABC(G)
 
         V = GridVisualizer(G, 'test')

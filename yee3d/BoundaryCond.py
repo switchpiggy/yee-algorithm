@@ -58,13 +58,13 @@ class FirstOrderABC(BoundaryCond):
                     self.grid.Ex[x][0][z] = self.ExY0[x][z] + self.coef * (self.grid.Ex[x][1][z] - self.grid.Ex[x][0][z])
                     self.ExY0[x][z] = self.grid.Ex[x][0][z]
                     self.grid.Ex[x][self.grid.dims[1] - 1][z] = self.ExYN[x][z] + self.coef * (self.grid.Ex[x][self.grid.dims[1] - 2][z] - self.grid.Ex[x][self.grid.dims[1] - 1][z])
-                    self.ExYN[y][z] = self.grid.Ex[x][self.grid.dims[1] - 1][z]
+                    self.ExYN[x][z] = self.grid.Ex[x][self.grid.dims[1] - 1][z]
                 if z < self.grid.dims[2] - 1:
                     #update Ez
                     self.grid.Ez[x][0][z] = self.EzY0[x][z] + self.coef * (self.grid.Ez[x][1][z] - self.grid.Ez[x][0][z])
-                    self.EzY0[y][z] = self.grid.Ez[x][0][z]
+                    self.EzY0[x][z] = self.grid.Ez[x][0][z]
                     self.grid.Ez[x][self.grid.dims[1] - 1][z] = self.EzYN[x][z] + self.coef * (self.grid.Ez[x][self.grid.dims[1] - 2][z] - self.grid.Ez[x][self.grid.dims[1] - 1][z])
-                    self.EzYN[y][z] = self.grid.Ez[x][self.grid.dims[1] - 1][z]
+                    self.EzYN[x][z] = self.grid.Ez[x][self.grid.dims[1] - 1][z]
                     
         #update Ey, Ex for Z0, Z
         for x in range(self.grid.dims[0]):
@@ -74,13 +74,13 @@ class FirstOrderABC(BoundaryCond):
                     self.grid.Ex[x][y][0] = self.ExZ0[x][y] + self.coef * (self.grid.Ex[x][y][1] - self.grid.Ex[x][y][0])
                     self.ExZ0[x][y] = self.grid.Ex[x][y][0]
                     self.grid.Ex[x][y][self.grid.dims[2] - 1] = self.ExZP[x][y] + self.coef * (self.grid.Ex[x][y][self.grid.dims[2] - 2] - self.grid.Ex[x][y][self.grid.dims[2] - 1])
-                    self.ExZP[y][z] = self.grid.Ex[x][y][self.grid.dims[2] - 1]
+                    self.ExZP[x][y] = self.grid.Ex[x][y][self.grid.dims[2] - 1]
                 if y < self.grid.dims[1] - 1:
                     #update Ez
                     self.grid.Ey[x][y][0] = self.EyZ0[x][y] + self.coef * (self.grid.Ey[x][y][1] - self.grid.Ey[x][y][0])
                     self.EyZ0[x][y] = self.grid.Ey[x][y][0]
                     self.grid.Ey[x][y][self.grid.dims[2] - 1] = self.EyZP[x][y] + self.coef * (self.grid.Ey[x][y][self.grid.dims[2] - 2] - self.grid.Ey[x][y][self.grid.dims[2] - 1])
-                    self.EyZP[y][z] = self.grid.Ey[x][y][self.grid.dims[2] - 1]
+                    self.EyZP[x][y] = self.grid.Ey[x][y][self.grid.dims[2] - 1]
 
 class TFSF(BoundaryCond):
     def __init__(self, g: Grid = None, name: str = None) -> None:
